@@ -1,0 +1,14 @@
+Package: RBitso
+Title: Bitso API Interface
+Version: 0.0.1
+Authors@R: person("Nicholas", "Bucher", email = "bucher@ciencias.unam.mx", role = c("aut", "cre"))
+Description: This package simplifies the use of the basic Bitso server requests, it is yet under construction and should be used carefully.
+Depends: R (>= 3.4.0)
+Imports:
+    jsonlite,
+    httr,
+    openssl
+License: Public
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
