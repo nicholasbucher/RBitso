@@ -32,7 +32,7 @@ fundings<-function(fid,limit){
   hdr<-paste0("Bitso ",ky,":",NC,":",openssl::sha256(paste0(NC,mthd,Pth,Pyld),scrt))
   tmp <- tempfile()
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
-  cat(noquote(paste("Success:", httr:content(res)$success,"\n\n")))
+  cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
     return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
   }

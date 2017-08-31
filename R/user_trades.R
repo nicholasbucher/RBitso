@@ -18,7 +18,7 @@ user_trades<-function(book){
   tmp <- tempfile()
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
-  if(httr:content(res)$success== TRUE){
+  if(httr::content(res)$success== TRUE){
     return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
   }
 }
