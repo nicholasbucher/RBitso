@@ -5,3 +5,5 @@ R Bitso API Package
 
 This should do right?
 Now lets do two things
+
+And then anothe one
