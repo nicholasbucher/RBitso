@@ -24,6 +24,13 @@ orders<-function(oid){
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
+    R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload
+    R<-transform(R,
+                 original_value=as.numeric(original_value),
+                 unfilled_amount=as.numeric(unfilled_amount),
+                 original_amount=as.numeric(original_amount),
+                 price=as.numeric(price)
+    )
+    return(R)
   }
 }

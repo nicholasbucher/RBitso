@@ -19,6 +19,13 @@ user_trades<-function(book){
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
+    R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload
+    R<-transform(R,
+                 minor=as.numeric(minor),
+                 major=as.numeric(major),
+                 fees_amount=as.numeric(fees_amount),
+                 price=as.numeric(price)
+                 )
+    return(R)
   }
 }

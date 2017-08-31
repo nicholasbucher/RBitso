@@ -13,6 +13,11 @@ trades<-function(book){
   res<-httr::GET(url, httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
+    R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload
+    R<-transform(R,
+                 amount=as.numeric(amount),
+                 price=as.numeric(price)
+    )
+    return(R)
   }
 }

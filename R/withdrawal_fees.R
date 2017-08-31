@@ -18,7 +18,11 @@ withdrawal_fees<-function(){
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    res<-data.frame(suppressWarnings(jsonlite::fromJSON(readLines(tmp))$payload$withdrawal), stringsAsFactors=FALSE)
-    return(res)
+    R<-data.frame(suppressWarnings(jsonlite::fromJSON(readLines(tmp))$payload$withdrawal), stringsAsFactors=FALSE)
+    R<-transform(R,
+                 btc=as.numeric(btc),
+                 eth=as.numeric(eth)
+    )
+    return(R)
   }
 } 

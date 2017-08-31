@@ -16,8 +16,6 @@ cancel_order<-function(oid){
   oid<-paste0(paste(oid,collapse="-"),"/")
   url<-paste0(url,oid)
   Pth<-substr(url,22,nchar(url))
-  # Pth<- "/v3/orders/"
-  
   hdr<-paste0("Bitso ",ky,":",NC,":",sha256(paste0(NC,mthd,Pth,Pyld),scrt))
   tmp <- tempfile()
   res<-httr::DELETE(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))

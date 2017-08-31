@@ -17,6 +17,12 @@ balance<-function(){
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload$balances)
+    R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload$balances
+    R<-transform(R,available=as.numeric(available),
+                 locked=as.numeric(locked),
+                 total=as.numeric(total),
+                 pending_deposit=as.numeric(pending_deposit),
+                 pending_withdrawal=as.numeric(pending_withdrawal))
+    return(R)
   }
 } 
