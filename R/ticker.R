@@ -19,6 +19,7 @@ ticker<-function(book){
                  high=as.numeric(high),
                  last=as.numeric(last),
                  volume=as.numeric(volume),
+                 created_at=time_parse(created_at),
                  vwap=as.numeric(vwap),
                  low=as.numeric(low),
                  ask=as.numeric(ask),

@@ -9,10 +9,10 @@
 available_books<-function(){
   url<-paste0("https://api.bitso.com/v3/available_books/")
   tmp <- tempfile()
-  res<-GET(url, write_disk(tmp))
-  cat(noquote(paste("Success:", content(res)$success,"\n\n")))
-  if(content(res)$success== TRUE){
-    R<-suppressWarnings(fromJSON(readLines(tmp)))$payload
+  res<-httr::GET(url, httr::write_disk(tmp))
+  cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
+  if(httr::content(res)$success== TRUE){
+    R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload
     R<-transform(R,
                  minimum_price=as.numeric(minimum_price),
                  maximum_price=as.numeric(maximum_price),

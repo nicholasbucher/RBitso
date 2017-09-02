@@ -2,6 +2,7 @@
 
 export(account_status)
 export(asks)
+export(available_books)
 export(balance)
 export(bids)
 export(cancel_order)

@@ -7,7 +7,8 @@ Depends: R (>= 3.4.0)
 Imports:
     jsonlite,
     httr,
-    openssl
+    openssl,
+    lubridate
 License: Public
 Encoding: UTF-8
 LazyData: true

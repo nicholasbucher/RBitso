@@ -21,6 +21,7 @@ user_trades<-function(book){
   if(httr::content(res)$success== TRUE){
     R<-suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload
     R<-transform(R,
+                 created_at=time_parse(created_at),
                  minor=as.numeric(minor),
                  major=as.numeric(major),
                  fees_amount=as.numeric(fees_amount),

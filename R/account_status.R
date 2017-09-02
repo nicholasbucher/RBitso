@@ -17,7 +17,13 @@ account_status<-function(){
   res<-httr::GET(url, httr::add_headers(Authorization=hdr), httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
-    res<-data.frame(suppressWarnings(jsonlite::fromJSON(readLines(tmp))$payload), stringsAsFactors=FALSE)
-    return(res)
+    R<-data.frame(suppressWarnings(jsonlite::fromJSON(readLines(tmp))$payload), stringsAsFactors=FALSE)
+    R<-transform(R,
+                 daily_limit=as.numeric(daily_limit),
+                 monthly_limit=as.numeric(monthly_limit),
+                 daily_remaining=as.numeric(daily_remaining),
+                 monthly_remaining=as.numeric(monthly_remaining)
+    )
+    return(R)
   }
 }
