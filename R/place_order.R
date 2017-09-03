@@ -21,7 +21,7 @@ place_order<-function(book,side,major,price,type){
   Pth<-"/v3/orders/"
   hdr<-paste0("Bitso ",ky,":",NC,":",openssl::sha256(paste0(NC,mthd,Pth,Pyld),scrt))
   tmp <- tempfile()
-  r<-httr::POST(url, body = body, httr::add_headers(Authorization=hdr), encode="json", httr::write_disk(tmp))
+  res<-httr::POST(url, body = body, httr::add_headers(Authorization=hdr), encode="json", httr::write_disk(tmp))
   cat(noquote(paste("Success:", httr::content(res)$success,"\n\n")))
   if(httr::content(res)$success== TRUE){
     return(suppressWarnings(jsonlite::fromJSON(readLines(tmp)))$payload)
