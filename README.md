@@ -1,14 +1,36 @@
 # RBitso
 R Bitso API Package
 
-## This is Markdown right?? On R-Studio!!! 
+    install_github("nicholasbucher/RBitso")
 
-This should do right?
-Now lets do two things
+## Usage 
+Lad library and set your personal Bitso Key and Bitso Secret to Enviroment
 
-And then anothe one
+    library(RBitso)
+    
+    ky<-"aAthYgJued"
+    scrt<-"09edab3590260f4526b352cd5135e870fcg"
+    
+Get your balance
 
-# RBitso Notes
+    balance()
+    
+     Success: TRUE 
+      currency    available locked        total pending_deposit pending_withdrawal
+    1      bch   0.00000000      0   0.00000000               0                  0
+    2      btc   0.00134465      0   0.00134465               0                  0
+    3      etc   0.00000000      0   0.00000000               0                  0
+    4      eth   0.00000000      0   0.00000000               0                  0
+    5      xrp   0.00000000      0   0.00000000               0                  0
+    6      mxn 101.48192000      0 101.48192000               0                  0
+    
+    
+Observe ticker
+
+    ticker()
+    Success: TRUE 
+        high  last          created_at    book   volume     vwap      low      ask    bid
+    1 80949.99 80500 2017-10-06 18:07:43 btc_mxn 341.5266 79554.58 78774.24 80496.93 80000.1
 
 # Notes
   - Establish num-format
