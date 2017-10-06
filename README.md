@@ -18,10 +18,10 @@ And then anothe one
   - Bank Codes & Withdrawal
 
 
-# Great, you have to start with the next step or do something else kid
-Books<-get_books()
-Books<-Books[1:5,1]
-full_ticker<-NULL
-for(i in 1:5){
-  full_ticker<-rbind(full_ticker,c(ticker(Books[i])))
-}
+# Code Notes
+    Books<-get_books()
+    Books<-Books[1:5,1]
+    full_ticker<-NULL
+    for(i in 1:5){
+      full_ticker<-rbind(full_ticker,c(ticker(Books[i])))
+    }
