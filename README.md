@@ -10,11 +10,12 @@ And then anothe one
 
 # RBitso Notes
 
-# Establish num-format
-# Fix empty payloads response error to NULL
-# Open orders & order_trades check
-# Withdrawals
-# Bank Codes & Withdrawal
+# Notes
+  - Establish num-format
+  - Fix empty payloads response error to NULL
+  - Open orders & order_trades check
+  - Withdrawals
+  - Bank Codes & Withdrawal
 
 
 # Great, you have to start with the next step or do something else kid
