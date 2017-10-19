@@ -3,7 +3,6 @@
 This package is intended to integrate R and Bitso Public/Private REST API's.
 It is currenty unfunded and in development, documentation is rudimentary.
 
-Only main features are supplied
 
 ## Install
 Install R Bitso API Package
@@ -39,10 +38,16 @@ Observe ticker
     Success: TRUE 
         high  last          created_at    book   volume     vwap      low      ask    bid
     1 80949.99 80500 2017-10-06 18:07:43 btc_mxn 341.5266 79554.58 78774.24 80496.93 80000.1
+    
+
+Get package Info & Features
+
+    help(package=RBitso)
+
 
 # Notes
 
-This Library Currently Does Not Supply:
+Although main features are supplied, this library currently does not supply:
 
   - Withdrawals
   - Ledger
