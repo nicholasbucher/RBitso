@@ -1,6 +1,7 @@
 # RBitso
 
 This package is intended to integrate R and Bitso Public/Private REST API's.
+
 It is currenty unfunded and in development, documentation is rudimentary.
 
 
