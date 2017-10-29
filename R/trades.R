@@ -2,12 +2,17 @@
 #'
 #' Public Book Trading History.
 #' @param book, character
+#' @param aggregated, boolean
 #' @keywords fees
 #' @export
 #' @examples
 #' trades("btc_mxn")
 
-trades<-function(book){
+trades<-function(book,aggregated){
+    if(! missing(aggregated)){
+      url<-paste0("https://api.bitso.com/v3/trades/?book=",book,"&aggregate=",aggregated)
+    }
+  
   url<-paste0("https://api.bitso.com/v3/trades/?book=",book)
   tmp <- tempfile()
   res<-httr::GET(url, httr::write_disk(tmp))

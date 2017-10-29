@@ -1,6 +1,14 @@
 # RBitso
-R Bitso API Package
 
+This package is intended to integrate R and Bitso Public/Private REST API's.
+
+It is currenty unfunded and in development, documentation is rudimentary.
+
+
+## Install
+Install R Bitso API Package
+    
+    library(devtools)
     install_github("nicholasbucher/RBitso")
 
 ## Usage 
@@ -27,23 +35,32 @@ Get your balance
     
 Observe ticker
 
-    ticker()
+    ticker("btc_mxn")
     Success: TRUE 
         high  last          created_at    book   volume     vwap      low      ask    bid
     1 80949.99 80500 2017-10-06 18:07:43 btc_mxn 341.5266 79554.58 78774.24 80496.93 80000.1
+    
+
+Get package Info & Features
+
+    help(package=RBitso)
+
 
 # Notes
-  - Establish num-format
-  - Fix empty payloads response error to NULL
-  - Open orders & order_trades check
+
+Although main features are supplied, this library currently does not supply:
+
   - Withdrawals
-  - Bank Codes & Withdrawal
+  - Ledger
+  - Bank Codes
+  - Error Description
+  - Document Uploads
+  - Mobile Phone Number Registration/Verification
+
+The addition of these features can kindly be requested to the developers email: bucher@ciencias.unam.mx
+
+  
 
 
-# Code Notes
-    Books<-get_books()
-    Books<-Books[1:5,1]
-    full_ticker<-NULL
-    for(i in 1:5){
-      full_ticker<-rbind(full_ticker,c(ticker(Books[i])))
-    }
+
+
