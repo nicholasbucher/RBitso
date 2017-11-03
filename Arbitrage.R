@@ -51,7 +51,7 @@ Books<-get_books()
 tickers<-full_ticker()
 fees<-trade_fees()
 
-for(i in 1:1000){
+for(i in 1:100){
   
   tickers<-full_ticker()
   HARV<-rbind(HARV,ARV())
