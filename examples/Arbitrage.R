@@ -55,7 +55,7 @@ for(i in 1:100){
   
   tickers<-full_ticker()
   HARV<-rbind(HARV,ARV())
-  Sys.sleep(5)
+  Sys.sleep(1)
   
 }
 
