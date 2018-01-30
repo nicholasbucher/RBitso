@@ -12,7 +12,7 @@ Install R Bitso API Package
     install_github("nicholasbucher/RBitso")
 
 ## Usage 
-Load library and set your personal Bitso Key and Bitso Secret to Enviroment
+Load library and set your personal Bitso Key and Bitso Secret to Enviroment [Keys Available Here](https://bitso.com/api_setup)
 
     library(RBitso)
     
