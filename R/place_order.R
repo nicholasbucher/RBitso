@@ -9,39 +9,63 @@
 #' @keywords order,sell,buy
 #' @export
 #' @examples
-#' order("btc_mxn","sell","0.001","75000","limit")
+#' place_order("btc_mxn","sell","limit","75000","0.001")
 
 
 place_order<-function(book,side,type,price,major,minor){
   
-  if(!missing(price) & type=="market"){
-    cat("Market Orders Do not need Price")
+  # Book Issue
+  if(missing(book)){
+    cat("Specify Book")
     return(NULL)
   }
+  # Side Issue
+  if(missing(side)){
+    cat("Specify Side")
+    return(NULL)
+  }
+  # Type Issue
+  if(missing(type)){
+    cat("Specify Type")
+    return(NULL)
+  }
+  # Major or Minor
   if(!missing(major) & !missing(minor)){
     cat("Only Specify Major or Minor")
     return(NULL)
   }
-  
-  if(!missing(major) & type=="limit"){
-    Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,major=major,price=price,type=type)))
-    body<-list(book=book,side=side,major=major,price=price,type=type)
+  # Market Case ----------------------------------------------------
+  if(type=="market"){
+    if(!missing(price)){
+      cat("Market Orders Do not need Price")
+      return(NULL)
+    }
+    if(!missing(major)){
+      Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,major=major,type=type)))
+      body<-list(book=book,side=side,major=major,type=type)
+    }
+    if(!missing(minor)){
+      Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,minor=minor,type=type)))
+      body<-list(book=book,side=side,minor=minor,type=type)
+    }
   }
-  
-  if(!missing(major) & type=="market"){
-    Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,major=major,type=type)))
-    body<-list(book=book,side=side,major=major,type=type)
+  if(type == "limit"){
+    if(missing(price)){
+      cat("Limit Orders need Price")
+      return(NULL)
+    }
+    if(!missing(major)){
+      Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,major=major,price=price,type=type)))
+      body<-list(book=book,side=side,major=major,price=price,type=type)
+    }
+    
+    if(!missing(minor)){
+      Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,minor=minor,price=price,type=type)))
+      body<-list(book=book,side=side,minor=minor,price=price,type=type)
+    }
+    
   }
-  
-  if(!missing(minor) & type=="limit"){
-    Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,minor=minor,price=price,type=type)))
-    body<-list(book=book,side=side,minor=minor,price=price,type=type)
-  }
-  
-  if(!missing(minor) & type=="market"){
-    Pyld<- gsub("\\[|\\]", "", jsonlite::toJSON(data.frame(book=book,side=side,minor=minor,type=type)))
-    body<-list(book=book,side=side,minor=minor,type=type)
-  }
+
   
   NC<-NONCE()
   mthd<-"POST"
